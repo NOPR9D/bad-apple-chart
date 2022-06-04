@@ -24,6 +24,7 @@ done
 
 [ -z "$file" ] && echo "You can specity -h for help" &&  echo "You don't specify a file so we exit" && exit
 
+fileName=(${file//./ })
 
-
-ffmpeg -skip_frame nokey -i ./assets/$file -vsync 0 -r ${fps:-${DEFAULT_FPS}} -f image2 thumbnails-%02d.jpeg
+mkdir ./${fileName[0]}
+ffmpeg -skip_frame nokey -i ./assets/$file -vsync 0 -r ${fps:-${DEFAULT_FPS}} -f image2 ./${fileName}/thumbnails-%02d.jpeg
